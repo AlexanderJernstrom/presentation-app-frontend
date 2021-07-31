@@ -23,7 +23,7 @@ export const SideBar = () => {
     document.addEventListener("keydown", handleEscape);
 
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [showModal]);
+  }, [showModal, handleEscape]);
 
   return (
     <div

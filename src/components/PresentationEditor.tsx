@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useStore } from "../stores/store";
 import { ContextMenu } from "./ContextMenu";
 import { Element } from "./Element";

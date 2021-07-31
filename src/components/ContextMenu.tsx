@@ -44,7 +44,7 @@ export const ContextMenu: React.FC<Props> = ({ containerRef }) => {
       document.removeEventListener("click", closeMenu);
       document.removeEventListener("contextmenu", handleMenu);
     };
-  }, []);
+  }, [handleMenu, closeMenu]);
 
   return active ? (
     <div

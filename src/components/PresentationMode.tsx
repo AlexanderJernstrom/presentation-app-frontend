@@ -1,9 +1,8 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useStore } from "../stores/store";
 import * as H from "history";
 import { PresentationEdit } from "../types/PresentationTypes";
 import { PlayControls } from "./PlayControls";
-import { Redirect } from "react-router";
 import { useKeyPress } from "../hooks/useKeyPress";
 import { apiURL } from "../App";
 
@@ -22,7 +21,6 @@ export const PresentationMode: React.FC<Props> = ({ match }) => {
   const setPresentation = useStore((state) => state.setPresentation);
   const [loading, setLoading] = useState(true);
   const mainContainer = useRef<HTMLDivElement | null>(null);
-  const [redirect, setRedirect] = useState(false);
   const changeSlide = useStore((state) => state.selectSlide);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -54,7 +52,7 @@ export const PresentationMode: React.FC<Props> = ({ match }) => {
         setIsFullScreen(false);
       }
     }
-  }, [leftPressed, rightPressed, fPressed]);
+  }, [leftPressed, rightPressed, fPressed, changeSlide, currentSlide]);
 
   useEffect(() => {
     const fetchPresentation = async () => {
@@ -68,15 +66,12 @@ export const PresentationMode: React.FC<Props> = ({ match }) => {
       setLoading(false);
     };
     fetchPresentation();
-  }, [match.params.id]);
+  }, [match.params.id, setPresentation]);
 
   console.log(presentation);
 
   return (
     <div>
-      {redirect === true ? (
-        <Redirect to={`/presentation/${match.params.id}`} />
-      ) : null}
       {loading ? (
         <div>..loading</div>
       ) : (
@@ -116,6 +111,7 @@ export const PresentationMode: React.FC<Props> = ({ match }) => {
                   >
                     <img
                       src={element.content}
+                      alt=""
                       style={{ width: "100%", height: "100%" }}
                     />
                   </div>

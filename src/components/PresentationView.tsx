@@ -37,7 +37,7 @@ export const PresentationView: React.FC<Props> = ({ match }) => {
       setLoading(false);
     };
     getPresentation();
-  }, [match.params.id]);
+  }, [match.params.id, setPresentation]);
 
   return (
     <div>

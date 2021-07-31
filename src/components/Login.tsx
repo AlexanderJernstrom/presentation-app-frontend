@@ -2,7 +2,6 @@ import React from "react";
 import { Field, Form, Formik } from "formik";
 import { Link, Redirect } from "react-router-dom";
 import * as H from "history";
-import axios from "axios";
 import { apiURL } from "../App";
 
 interface FormType {

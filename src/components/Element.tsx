@@ -132,6 +132,7 @@ export const Element: React.FC<Props> = ({ element, containerRef }) => {
             cursor: "move",
             border: isDragging ? "3px solid #51BBFE" : "none",
           }}
+          alt=""
           onMouseDown={(e) => pickUpElement(e)}
           onMouseMove={(e) => moveElement(e)}
           onMouseUp={(e) => dropElement(e)}
